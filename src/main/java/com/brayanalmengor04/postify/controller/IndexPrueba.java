@@ -10,6 +10,6 @@ public class IndexPrueba {
     @GetMapping("/test")  // URL: http://localhost:8080/test
     @ResponseBody
     public String test() {
-        return "¡Todo funciona correctamente! ";
+        return "¡Todo funciona correctamente!";
     }
 }

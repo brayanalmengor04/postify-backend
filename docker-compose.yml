@@ -10,8 +10,11 @@ services:
       - DB_URL=jdbc:mysql://localhost:3306/db_postify?createDatabaseIfNotExist=true&serverTimezone=UTC
       - DB_USER_NAME=root
       - DB_PASSWORD=admin
+    volumes:
+      - ./target/postify_backend-0.0.1.jar:/app/app_postify.jar
     depends_on:
       - db_postify
+    command: ["java", "-jar", "/app/app_postify.jar"]
 
   db_postify:
     container_name: db_postify
