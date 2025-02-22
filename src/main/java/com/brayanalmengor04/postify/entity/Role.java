@@ -1,6 +1,6 @@
 package com.brayanalmengor04.postify.entity;
 
-
+import com.brayanalmengor04.postify.enums.Permission;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -16,22 +16,22 @@ import java.util.Set;
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idRole;
+    private Long idRole;
     private String roleName;
+    private String description;
 
-    @ElementCollection
+    // Para escribir la lista de permisos
+    @ElementCollection(targetClass = Permission.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @CollectionTable(name = "role_permissions", joinColumns = @JoinColumn(name = "role_id"))
     @Column(name = "permission")
-    private Set<String> permissions;
-
-    private String description;
+    private Set<Permission> permissions;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @PrePersist
     protected void onPersist() {
-       this.createdAt = LocalDateTime.now();
+        this.createdAt = LocalDateTime.now();
     }
 }
