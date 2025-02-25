@@ -1,0 +1,27 @@
+
+services:
+  app_postify:
+    container_name: app_postify
+    image: postify-app:1.0.0
+    build: .
+    ports:
+      - 8080:8080
+    environment:
+      - DB_URL=jdbc:mysql://localhost:3306/db_postify?createDatabaseIfNotExist=true&serverTimezone=UTC
+      - DB_USER_NAME=root
+      - DB_PASSWORD=admin
+    volumes:
+      - ./target/postify_backend-0.0.1.jar:/app/app_postify.jar
+    depends_on:
+      - db_postify
+    command: ["java", "-jar", "/app/app_postify.jar"]
+
+  db_postify:
+    container_name: db_postify
+    image: mysql:8.0.3
+    ports:
+      - "3307:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_DATABASE: db_postify
