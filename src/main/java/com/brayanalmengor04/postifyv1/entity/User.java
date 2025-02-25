@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.util.List;
+
 
 @Entity
 @Data
@@ -27,5 +29,4 @@ public class User {
     @JoinColumn(name = "role_id", nullable = true)  // Clave foránea
     private Role role;
 
-    // Implementar lista de usuario prox--------
 }

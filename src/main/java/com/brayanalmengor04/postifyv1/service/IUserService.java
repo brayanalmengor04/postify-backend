@@ -7,10 +7,9 @@ import java.util.List;
 
 public interface IUserService {
     public List<User> getAllUsers();
-
+    public User addUser(UserDTO userDTO);
     public boolean checkPassword(String rawPassword, String encodedPassword);
     public User getUserById(Long id);
     User getUserByEmail(String email);
-    public User addUser(UserDTO userDTO);
     public void deleteUser(User user);
 }
