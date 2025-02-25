@@ -19,11 +19,9 @@ public class AuthController {
     @PostMapping("/signin")
     public ResponseEntity<User> loginUser(@RequestBody UserDTO userDTO) {
         User user = userService.getUserByEmail(userDTO.getEmail());
-
         if (user != null && userService.checkPassword(userDTO.getPassword(), user.getPassword())) {
             return ResponseEntity.ok(user);
         }
-
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }
