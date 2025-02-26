@@ -20,6 +20,7 @@ public class Comment {
     // Muchos
     @ManyToOne
     private User user;
+
     private int likes;
 
     @Column(nullable = false, updatable = false)
@@ -29,6 +30,9 @@ public class Comment {
     protected void onPersist() {
         if (this.createdAt == null) {
             this.createdAt = LocalDateTime.now();
+        }
+        if (this.likes == 0) {
+            this.likes = 0; // Asegura que likes no sea nulo y tenga valor 0
         }
     }
 }
