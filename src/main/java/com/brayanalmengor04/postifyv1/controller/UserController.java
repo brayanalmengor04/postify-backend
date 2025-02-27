@@ -1,7 +1,9 @@
 package com.brayanalmengor04.postifyv1.controller;
 
 import com.brayanalmengor04.postifyv1.dto.UserDTO;
+import com.brayanalmengor04.postifyv1.entity.Role;
 import com.brayanalmengor04.postifyv1.entity.User;
+import com.brayanalmengor04.postifyv1.service.IRoleService;
 import com.brayanalmengor04.postifyv1.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,9 @@ public class UserController {
 
     @Autowired
     private IUserService userService;
+
+    @Autowired
+    private IRoleService roleService;
 
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -35,6 +40,34 @@ public class UserController {
         User newUser = userService.addUser(userDTO);
         return ResponseEntity.ok(newUser);
     }
+    @PutMapping("/user/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
+        User existingUser = userService.getUserById(id);
+
+        if (existingUser == null) {
+            return ResponseEntity.notFound().build();
+        }
+
+        Role role = roleService.getRoleById(userDTO.getRoleId());
+        if (role == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
+        }
+
+        // Actualizar datos del usuario
+        existingUser.setName(userDTO.getName());
+        existingUser.setLastName(userDTO.getLastName());
+        existingUser.setStreetAddress(userDTO.getStreetAddress());
+        existingUser.setEmail(userDTO.getEmail());
+        existingUser.setPassword(userDTO.getPassword());
+        existingUser.setRole(role);
+
+        // Guardar cambios usando un método updateUser en el servicio
+        User updatedUser = userService.updateUser(existingUser);
+
+        return ResponseEntity.ok(updatedUser);
+    }
+
+
     @DeleteMapping("/user/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         User user = userService.getUserById(id);

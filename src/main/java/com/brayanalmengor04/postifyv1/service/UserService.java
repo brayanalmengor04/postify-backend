@@ -7,8 +7,6 @@ import com.brayanalmengor04.postifyv1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
-
 import java.util.List;
 
 @Service
@@ -20,6 +18,7 @@ public class UserService implements IUserService {
     private RoleService roleService;
 
     private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder(); // Para encriptar contraseñas
+
 
     public boolean checkPassword(String rawPassword, String encodedPassword) {
         return passwordEncoder.matches(rawPassword, encodedPassword);
@@ -42,18 +41,31 @@ public class UserService implements IUserService {
 
     @Override
     public User addUser(UserDTO userDTO) {
-        Role role = roleService.getRoleById(userDTO.getRoleId()); // Obtener el rol desde la BD
-        if (role == null) {
-            throw new RuntimeException("Role not found with ID: " + userDTO.getRoleId());
-        }
         User user = new User();
         user.setName(userDTO.getName());
         user.setLastName(userDTO.getLastName());
         user.setStreetAddress(userDTO.getStreetAddress());
         user.setEmail(userDTO.getEmail());
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword())); // Encriptar antes de guardar
-        user.setRole(role); // Asignar el rol
 
+        // Encriptar la contraseña antes de guardarla
+        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+
+        // Buscar el rol y asignarlo
+        Role role = roleService.getRoleById(userDTO.getRoleId());
+        if (role == null) {
+            throw new RuntimeException("Role not found");
+        }
+        user.setRole(role);
+
+        return userRepository.save(user);
+    }
+
+    @Override
+    public User updateUser(User user) {
+        // Asegurar que la contraseña se encripte si se actualiza
+        if (user.getPassword() != null && !user.getPassword().isEmpty()) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         return userRepository.save(user);
     }
 
@@ -61,5 +73,4 @@ public class UserService implements IUserService {
     public void deleteUser(User user) {
         userRepository.delete(user);
     }
-
 }

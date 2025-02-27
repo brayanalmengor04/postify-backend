@@ -8,4 +8,7 @@ public interface IRoleService {
     public List<Role> getAllRoles();
     public Role getRoleById(Long id);
     public Role save(Role role);
+
+    public void deleteRoleById(Long id);
+
 }

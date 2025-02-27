@@ -29,5 +29,10 @@ public class RoleService implements IRoleService {
         return this.roleRepository.save(role);
     }
 
+    @Override
+    public void deleteRoleById(Long id) {
+        roleRepository.deleteById(id);
+    }
+
 
 }

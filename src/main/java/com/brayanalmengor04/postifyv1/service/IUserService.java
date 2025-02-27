@@ -8,6 +8,7 @@ import java.util.List;
 public interface IUserService {
     public List<User> getAllUsers();
     public User addUser(UserDTO userDTO);
+    public User updateUser(User user);
     public boolean checkPassword(String rawPassword, String encodedPassword);
     public User getUserById(Long id);
     User getUserByEmail(String email);
