@@ -77,7 +77,7 @@ public class UserController {
     public ResponseEntity<Map<String,Boolean>> deletedUser(@PathVariable Long id) {
 
         User user = userService.getUserById(id);
-        if (user == null) throw new RuntimeException("Employee not found");
+        if (user == null) throw new RuntimeException("User not found");
 
         userService.deleteUser(id);
 

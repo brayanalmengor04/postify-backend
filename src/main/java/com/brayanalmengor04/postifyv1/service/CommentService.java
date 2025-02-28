@@ -37,4 +37,31 @@ public class CommentService implements ICommentService {
         return commentRepository.save(comment);
 
     }
+
+    @Override
+    public Comment getCommentById(Long commentId) {
+        return this.commentRepository.findById(commentId).orElse(null);
+    }
+
+
+    @Override
+    public Comment updateComment(Long commentId, String newContent, Long userId) {
+        Comment comment = this.commentRepository.findById(commentId).orElse(null);
+
+        User user = userService.getUserById(userId);
+        if(!comment.getUser().getId().equals(userId) &&
+                !user.getRole().getRoleName().equals("Administrador")) {
+            throw new RuntimeException("User not found with ID: " + comment.getUser().getId());
+        }
+
+        comment.setContent(newContent);
+        return commentRepository.save(comment);
+    }
+
+    @Override
+    public void deleteComment(Long commentId) {
+        this.commentRepository.deleteById(commentId);
+
+    }
+
 }
