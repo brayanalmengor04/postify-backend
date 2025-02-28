@@ -15,9 +15,12 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(csrf -> csrf.disable())  // Deshabilita CSRF
+
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/**").permitAll()  // Permite acceso a todas las rutas
                 )
+
+
                 .formLogin(login -> login.disable())  // Deshabilita el formulario de login de Spring
                 .httpBasic(basic -> basic.disable()); // Deshabilita autenticación básica
 

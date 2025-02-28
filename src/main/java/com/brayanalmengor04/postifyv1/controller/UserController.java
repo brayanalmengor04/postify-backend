@@ -3,14 +3,18 @@ package com.brayanalmengor04.postifyv1.controller;
 import com.brayanalmengor04.postifyv1.dto.UserDTO;
 import com.brayanalmengor04.postifyv1.entity.Role;
 import com.brayanalmengor04.postifyv1.entity.User;
+import com.brayanalmengor04.postifyv1.service.ICommentService;
 import com.brayanalmengor04.postifyv1.service.IRoleService;
 import com.brayanalmengor04.postifyv1.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("postify-app")
@@ -22,6 +26,9 @@ public class UserController {
 
     @Autowired
     private IRoleService roleService;
+
+    @Autowired
+    private ICommentService commentService;
 
     @GetMapping("/user")
     public ResponseEntity<List<User>> getAllUsers() {
@@ -61,20 +68,27 @@ public class UserController {
         existingUser.setPassword(userDTO.getPassword());
         existingUser.setRole(role);
 
-        // Guardar cambios usando un método updateUser en el servicio
         User updatedUser = userService.updateUser(existingUser);
 
         return ResponseEntity.ok(updatedUser);
     }
 
-
     @DeleteMapping("/user/{id}")
-    public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
+    public ResponseEntity<Map<String,Boolean>> deletedUser(@PathVariable Long id) {
+
         User user = userService.getUserById(id);
-        if (user != null) {
-            userService.deleteUser(user);
-            return ResponseEntity.noContent().build();
-        }
-        return ResponseEntity.notFound().build();
+        if (user == null) throw new RuntimeException("Employee not found");
+
+        userService.deleteUser(id);
+
+        // Json {"eliminado":"true"}
+        Map<String,Boolean> response = new HashMap<>();
+        response.put("deleted", Boolean.TRUE);
+        return ResponseEntity.ok(response);
+
     }
+
+
+
+
 }

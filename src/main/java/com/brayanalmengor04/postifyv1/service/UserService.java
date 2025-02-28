@@ -40,6 +40,11 @@ public class UserService implements IUserService {
     }
 
     @Override
+    public void deleteUser(Long id) {
+        this.userRepository.deleteById(id);
+    }
+
+    @Override
     public User addUser(UserDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
@@ -69,8 +74,6 @@ public class UserService implements IUserService {
         return userRepository.save(user);
     }
 
-    @Override
-    public void deleteUser(User user) {
-        userRepository.delete(user);
-    }
+
+
 }

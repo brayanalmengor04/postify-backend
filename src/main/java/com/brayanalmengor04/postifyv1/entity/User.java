@@ -1,5 +1,6 @@
 package com.brayanalmengor04.postifyv1.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -28,5 +29,9 @@ public class User {
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = true)  // Clave foránea
     private Role role;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference  // Controla la serialización
+    private List<Comment> comments;
 
 }

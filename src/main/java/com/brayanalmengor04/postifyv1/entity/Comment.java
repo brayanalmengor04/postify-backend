@@ -1,5 +1,6 @@
 package com.brayanalmengor04.postifyv1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -17,8 +18,9 @@ public class Comment {
     private Long id;
     private String content;
 
-    // Muchos
     @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties("comments") // Evita la recursión infinita
     private User user;
 
     private int likes;

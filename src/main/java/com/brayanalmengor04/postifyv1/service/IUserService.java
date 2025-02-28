@@ -12,5 +12,5 @@ public interface IUserService {
     public boolean checkPassword(String rawPassword, String encodedPassword);
     public User getUserById(Long id);
     User getUserByEmail(String email);
-    public void deleteUser(User user);
+    public void deleteUser(Long id);
 }
