@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("postify-app")
-@CrossOrigin(origins = "http://localhost:5174") // Permite peticiones desde el frontend
+@CrossOrigin(value = "http://localhost:5173")
 public class RoleController {
 
     @Autowired

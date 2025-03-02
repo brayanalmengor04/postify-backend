@@ -7,7 +7,9 @@ import com.brayanalmengor04.postifyv1.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+
 import java.util.List;
+
 
 @Service
 public class UserService implements IUserService {
@@ -46,6 +48,7 @@ public class UserService implements IUserService {
 
     @Override
     public User addUser(UserDTO userDTO) {
+
         User user = new User();
         user.setName(userDTO.getName());
         user.setLastName(userDTO.getLastName());
@@ -64,6 +67,7 @@ public class UserService implements IUserService {
 
         return userRepository.save(user);
     }
+
 
     @Override
     public User updateUser(User user) {
