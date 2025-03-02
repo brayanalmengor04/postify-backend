@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -27,6 +28,18 @@ public class RoleService implements IRoleService {
     @Override
     public Role save(Role role) {
         return this.roleRepository.save(role);
+    }
+    // Agregamos seeder para los permisos (DEFAULT )
+    public void addRoleIfNotExists(String roleName, String description, String permissions) {
+        Optional<Role> existingRole = roleRepository.findByRoleName(roleName);
+        if (existingRole.isEmpty()) {
+            Role role = new Role();
+            role.setRoleName(roleName);
+            role.setDescription(description);
+            role.setPermission(permissions);
+            roleRepository.save(role);
+            System.out.println("✅ Rol " + roleName + " agregado correctamente.");
+        }
     }
 
     @Override

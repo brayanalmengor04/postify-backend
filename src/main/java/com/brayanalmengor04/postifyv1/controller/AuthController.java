@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("postify-app/auth")
-@CrossOrigin(value = "http://localhost:5173") // Permitir acceso desde el frontend
+@CrossOrigin(origins = "http://localhost:5174") // Permite peticiones desde el frontend
 public class AuthController {
 
     @Autowired

@@ -16,7 +16,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("postify-app")
-@CrossOrigin(value = "http://localhost:5173") // Permitir acceso desde el frontend
+@CrossOrigin(origins = "http://localhost:5174") // Permite peticiones desde el frontend
 public class CommentController {
 
     @Autowired

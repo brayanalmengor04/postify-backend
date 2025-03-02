@@ -18,7 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("postify-app")
-@CrossOrigin(value = "http://localhost:5173") // Permitir acceso desde el frontend
+@CrossOrigin(origins = "http://localhost:5174") // Permite peticiones desde el frontend
 public class UserController {
 
     @Autowired
@@ -42,7 +42,7 @@ public class UserController {
         return (user != null) ? ResponseEntity.ok(user) : ResponseEntity.notFound().build();
     }
 
-    @PostMapping("/user-add")
+    @PostMapping("user-add")
     public ResponseEntity<User> createUser(@RequestBody UserDTO userDTO) {
         User newUser = userService.addUser(userDTO);
         return ResponseEntity.ok(newUser);
