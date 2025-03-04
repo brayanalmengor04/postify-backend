@@ -100,7 +100,7 @@ _New users can sign up and create an account to start posting._
 | GET    | /comment             | Fetch all comments  |
 | POST   | /comment-add         | Create a comment    |
 | PUT    | /comment/{id}        | Update a comment    |
-| DELETE | /comment/{id}        | Delete a comment    |
+| DELETE | /comment/{id}        | Delete a comment    | 
 
 ### 💬 Replies
 | Method | Endpoint             | Description           |
@@ -120,13 +120,27 @@ _New users can sign up and create an account to start posting._
 
 ---
 ## 💡 Contributing
-We welcome contributions! 🚀
+We welcome contributions to make **Postify** more efficient, clean, and maintainable! 🚀
 
+### 🛠️ How You Can Help
+We aim for a **clean code** approach, prioritizing readability, simplicity, and performance. Contributions can include:
+
+- **Refactoring code** to enhance clarity and maintainability.
+- **Optimizing database queries** for better performance.
+- **Improving API efficiency** to reduce response times.
+- **Enhancing security** by following best practices.
+- **Writing comprehensive tests** to ensure stability.
+
+### 📝 Contribution Guidelines
 1. **Fork** the repository 🍴
-2. **Create a feature branch** (`git checkout -b feature-name`) 🌱
-3. **Commit changes** (`git commit -m 'Add new feature'`) 💾
-4. **Push to branch** (`git push origin feature-name`) 🚀
-5. **Submit a Pull Request** 📩
+2. **Create a feature branch** (`git checkout -b improve-backend`) 🌱
+3. **Follow best practices** (SOLID principles, DRY, KISS) 📜
+4. **Document your changes** clearly in the code 💡
+5. **Commit changes** (`git commit -m 'Optimized backend query handling'`) 💾
+6. **Push to branch** (`git push origin improve-backend`) 🚀
+7. **Submit a Pull Request** with a clear explanation 📩
+
+We encourage meaningful discussions and improvements. Let’s build a scalable and efficient platform together! 🔥
 ---
 ## 📜 License
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for details.
