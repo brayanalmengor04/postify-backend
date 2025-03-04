@@ -1,18 +1,19 @@
 package com.brayanalmengor04.postifyv1.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class Comment {
+public class Reply {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,14 +22,13 @@ public class Comment {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties("comments") // Evita la recursión infinita en JSON
-    private User user;
+    @JsonIgnoreProperties("replies") // Evita la recursión infinita en JSON
+    private User author;
 
-    private int likes;
-
-    @OneToMany(mappedBy = "comment", cascade = CascadeType.ALL, orphanRemoval = true)
-    @JsonIgnoreProperties("comment") // Evita la recursión infinita
-    private List<Reply> replies;
+    @ManyToOne
+    @JoinColumn(name = "comment_id", nullable = false)
+    @JsonIgnore // Evita bucles en JSON al serializar
+    private Comment comment; // Relación con el comentario al que responde
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
@@ -37,9 +37,6 @@ public class Comment {
     protected void onPersist() {
         if (this.createdAt == null) {
             this.createdAt = LocalDateTime.now();
-        }
-        if (this.likes == 0) {
-            this.likes = 0;
         }
     }
 }

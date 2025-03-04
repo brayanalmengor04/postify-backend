@@ -25,9 +25,9 @@ public class User {
     private String streetAddress;
     private String email;
     private String password;
-
-    @Lob
-    private String avatarUrl;
+//
+//    @Lob
+//    private String avatarUrl;
 
     @ManyToOne
     @JoinColumn(name = "role_id", nullable = true)  // Clave foránea
