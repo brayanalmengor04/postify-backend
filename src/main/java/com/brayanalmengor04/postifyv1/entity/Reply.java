@@ -6,7 +6,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDateTime;
-
 @Entity
 @Getter
 @Setter
@@ -18,17 +17,18 @@ public class Reply {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String content;
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonIgnoreProperties("replies") // Evita la recursión infinita en JSON
+    @JsonIgnoreProperties({"replies", "comments"}) // Evita la recursión
     private User author;
 
     @ManyToOne
     @JoinColumn(name = "comment_id", nullable = false)
-    @JsonIgnore // Evita bucles en JSON al serializar
-    private Comment comment; // Relación con el comentario al que responde
+    @JsonIgnoreProperties({"replies"}) // Evita la recursión
+    private Comment comment;
 
     @Column(nullable = false, updatable = false)
     private LocalDateTime createdAt;
