@@ -31,6 +31,12 @@ public class ReplyService implements IReplyService {
     public List<Reply> getAllRepliesByUserId(Long userId) {
         return this.replyRepository.findByAuthorId(userId);
     }
+
+    @Override
+    public List<Reply> getAllReplies() {
+        return replyRepository.findAll();
+    }
+
     @Override
     public Reply findById(Long id) {
         return replyRepository.findById(id).orElseThrow(() -> new RuntimeException("Respuesta no encontrada"));

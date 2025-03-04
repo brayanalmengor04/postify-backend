@@ -25,6 +25,11 @@ public class ReplyController {
         return ResponseEntity.ok(savedReply);
     }
 
+    @GetMapping("/reply/all")
+    public ResponseEntity<List<Reply>> getAllReplies() {
+        return ResponseEntity.ok(replyService.getAllReplies());
+    }
+
     @GetMapping("/reply/user/{userId}")
     public ResponseEntity<List<Reply>> getRepliesByUser(@PathVariable Long userId) {
         return ResponseEntity.ok(replyService.getAllRepliesByUserId(userId));

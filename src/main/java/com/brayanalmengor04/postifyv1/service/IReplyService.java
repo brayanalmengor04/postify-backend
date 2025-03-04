@@ -8,5 +8,7 @@ import java.util.List;
 public interface IReplyService {
     public Reply findById(Long id);
     public List<Reply> getAllRepliesByUserId(Long userId);
+    public List<Reply> getAllReplies();
     public Reply save(ReplyDTO replyDTO);
+
 }
