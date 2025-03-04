@@ -81,47 +81,6 @@ public class UserController {
 
         return ResponseEntity.ok(updatedUser);
     }
-//    @PutMapping("/user-perfil/{id}")
-//    public ResponseEntity<User> updateUserProfile(
-//            @PathVariable Long id,
-//            @RequestPart("user") UserDTO userDTO,
-//            @RequestPart(value = "avatar", required = false) MultipartFile avatarFile) {
-//
-//        User existingUser = userService.getUserById(id);
-//        if (existingUser == null) {
-//            return ResponseEntity.notFound().build();
-//        }
-//
-//        // Actualizar datos del usuario
-//        existingUser.setName(userDTO.getName());
-//        existingUser.setLastName(userDTO.getLastName());
-//        existingUser.setStreetAddress(userDTO.getStreetAddress());
-//        existingUser.setEmail(userDTO.getEmail());
-//
-//        Role role = roleService.getRoleById(userDTO.getRoleId());
-//        if (role == null) {
-//            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(null);
-//        }
-//        existingUser.setRole(role);
-//
-//        // Procesar imagen si se envió
-//        if (avatarFile != null && !avatarFile.isEmpty()) {
-//            try {
-//                String fileName = "avatar_" + id + "_" + avatarFile.getOriginalFilename();
-//                Path filePath = Paths.get("uploads/avatars/" + fileName);
-//                Files.createDirectories(filePath.getParent());
-//                Files.write(filePath, avatarFile.getBytes());
-//
-//                existingUser.setAvatarUrl("/uploads/avatars/" + fileName);
-//            } catch (IOException e) {
-//                return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(null);
-//            }
-//        }
-//
-//        User updatedUser = userService.updateUser(existingUser);
-//        return ResponseEntity.ok(updatedUser);
-//    }
-//
     @DeleteMapping("/user/{id}")
     public ResponseEntity<Map<String,Boolean>> deletedUser(@PathVariable Long id) {
 
