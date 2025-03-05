@@ -14,23 +14,62 @@ Welcome to **Postify - Share & Connect**, an interactive web application where u
 
 ## 📂 Project Structure
 ```
-/postify-backend
-│── .mvn/                     # Maven wrapper
-│── src/
-│   ├── main/java/com/brayanalmengor04/postify/
-│   │   ├── config/       # Configuration classes
-│   │   ├── controller/   # REST Controllers
-│   │   ├── entity/       # Entity models
-│   │   ├── enums/        # Enumerations
-│   │   ├── repository/   # Data access layer
-│   │   ├── security/     # Security configuration
-│   │   ├── service/      # Business logic
-│   │   ├── PostifyApplication.java  # Main application class
-│   ├── resources/        # Static resources
-│   ├── test/             # Test cases
-│── .gitignore             # Git ignore rules
-│── docker-compose.yml     # Docker configuration
-│── README.md              # Project overview
+└── 📁src
+    └── 📁main
+        └── 📁java
+            └── 📁com
+                └── 📁brayanalmengor04
+                    └── 📁postifyv1
+                        └── 📁config
+                            └── SecurityConfig.java
+                        └── 📁controller
+                            └── AuthController.java
+                            └── CommentController.java
+                            └── ReplyController.java
+                            └── RoleController.java
+                            └── UserController.java
+                        └── 📁dto
+                            └── CommentDTO.java
+                            └── ReplyDTO.java
+                            └── UserDTO.java
+                        └── 📁entity
+                            └── Comment.java
+                            └── Reply.java
+                            └── Role.java
+                            └── User.java
+                        └── 📁enums
+                            └── Permission.java
+                        └── Postifyv1Application.java
+                        └── 📁repository
+                            └── CommentRepository.java
+                            └── ReplyRepository.java
+                            └── RoleRepository.java
+                            └── UserRepository.java
+                        └── 📁security
+                        └── 📁seeder
+                            └── DatabaseSeeder.java
+                        └── 📁service
+                            └── CommentService.java
+                            └── ICommentService.java
+                            └── ImageService.java
+                            └── IReplyService.java
+                            └── IRoleService.java
+                            └── IUserService.java
+                            └── ReplyService.java
+                            └── RoleService.java
+                            └── UserService.java
+                        └── 📁util
+        └── 📁resources
+            └── application.properties
+            └── logback-spring.xml
+            └── 📁static
+            └── 📁templates
+    └── 📁test
+        └── 📁java
+            └── 📁com
+                └── 📁brayanalmengor04
+                    └── 📁postifyv1
+                        └── Postifyv1ApplicationTests.java
 ```
 
 ---
