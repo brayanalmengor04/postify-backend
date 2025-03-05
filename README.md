@@ -14,62 +14,63 @@ Welcome to **Postify - Share & Connect**, an interactive web application where u
 
 ## 📂 Project Structure
 ```
-└── 📁src
-    └── 📁main
-        └── 📁java
-            └── 📁com
-                └── 📁brayanalmengor04
-                    └── 📁postifyv1
-                        └── 📁config
-                            └── SecurityConfig.java
-                        └── 📁controller
-                            └── AuthController.java
-                            └── CommentController.java
-                            └── ReplyController.java
-                            └── RoleController.java
-                            └── UserController.java
-                        └── 📁dto
-                            └── CommentDTO.java
-                            └── ReplyDTO.java
-                            └── UserDTO.java
-                        └── 📁entity
-                            └── Comment.java
-                            └── Reply.java
-                            └── Role.java
-                            └── User.java
-                        └── 📁enums
-                            └── Permission.java
-                        └── Postifyv1Application.java
-                        └── 📁repository
-                            └── CommentRepository.java
-                            └── ReplyRepository.java
-                            └── RoleRepository.java
-                            └── UserRepository.java
-                        └── 📁security
-                        └── 📁seeder
-                            └── DatabaseSeeder.java
-                        └── 📁service
-                            └── CommentService.java
-                            └── ICommentService.java
-                            └── ImageService.java
-                            └── IReplyService.java
-                            └── IRoleService.java
-                            └── IUserService.java
-                            └── ReplyService.java
-                            └── RoleService.java
-                            └── UserService.java
-                        └── 📁util
-        └── 📁resources
-            └── application.properties
-            └── logback-spring.xml
-            └── 📁static
-            └── 📁templates
-    └── 📁test
-        └── 📁java
-            └── 📁com
-                └── 📁brayanalmengor04
-                    └── 📁postifyv1
-                        └── Postifyv1ApplicationTests.java
+└── 📁src  
+    └── 📁main  
+        └── 📁java  
+            └── 📁com  
+                └── 📁brayanalmengor04  
+                    └── 📁postifyv1  // 📌 Main package of the Postify backend  
+                        └── 📁config  // 📌 Contains general system configurations  
+                            └── SecurityConfig.java  // 🔒 Security configuration using Spring Security  
+                        └── 📁controller  // 📌 Controllers handling HTTP requests  
+                            └── AuthController.java  // 🔑 Handles authentication and session management  
+                            └── CommentController.java  // 💬 Manages comments  
+                            └── ReplyController.java  // 🔄 Manages replies to comments  
+                            └── RoleController.java  // 🎭 Manages user roles and permissions  
+                            └── UserController.java  // 👤 Manages user-related operations  
+                        └── 📁dto  // 📌 DTO (Data Transfer Object) classes for data transfer between layers  
+                            └── CommentDTO.java  // 💬 DTO for comment data  
+                            └── ReplyDTO.java  // 🔄 DTO for reply data  
+                            └── UserDTO.java  // 👤 DTO for user data  
+                        └── 📁entity  // 📌 Entity classes representing database models  
+                            └── Comment.java  // 💬 Entity for comments  
+                            └── Reply.java  // 🔄 Entity for replies  
+                            └── Role.java  // 🎭 Entity for user roles  
+                            └── User.java  // 👤 Entity for users  
+                        └── 📁enums  // 📌 Enumerations used in the system  
+                            └── Permission.java  // 🎭 Enum defining user permissions  
+                        └── Postifyv1Application.java  // 🚀 Main class to start the Spring Boot application  
+                        └── 📁repository  // 📌 Interfaces for database access  
+                            └── CommentRepository.java  // 💬 Repository for comments  
+                            └── ReplyRepository.java  // 🔄 Repository for replies  
+                            └── RoleRepository.java  // 🎭 Repository for roles  
+                            └── UserRepository.java  // 👤 Repository for users  
+                        └── 📁security  // 📌 Security-related implementations  
+                        └── 📁seeder  // 📌 Classes for inserting initial data into the database  
+                            └── DatabaseSeeder.java  // 🌱 Seeds initial data (roles, users, etc.)  
+                        └── 📁service  // 📌 Business logic and system rules  
+                            └── CommentService.java  // 💬 Service for managing comments  
+                            └── ICommentService.java  // 💬 Interface for comment service  
+                            └── ImageService.java  // 🖼️ Service for handling images  
+                            └── IReplyService.java  // 🔄 Interface for reply service  
+                            └── IRoleService.java  // 🎭 Interface for role service  
+                            └── IUserService.java  // 👤 Interface for user service  
+                            └── ReplyService.java  // 🔄 Service for managing replies  
+                            └── RoleService.java  // 🎭 Service for managing roles  
+                            └── UserService.java  // 👤 Service for managing users  
+                        └── 📁util  // 📌 Utility classes and helper functions  
+        └── 📁resources  // 📌 Configuration files and application resources  
+            └── application.properties  // ⚙️ General system configuration (database, logs, etc.)  
+            └── logback-spring.xml  // 📜 Logback configuration for logging  
+            └── 📁static  // 📌 Static files (images, CSS, JS)  
+            └── 📁templates  // 📌 Templates (if using a view engine like Thymeleaf)  
+    └── 📁test  // 📌 Unit and integration tests  
+        └── 📁java  
+            └── 📁com  
+                └── 📁brayanalmengor04  
+                    └── 📁postifyv1  
+                        └── Postifyv1ApplicationTests.java  // ✅ Class for automated tests  
+
 ```
 
 ---
