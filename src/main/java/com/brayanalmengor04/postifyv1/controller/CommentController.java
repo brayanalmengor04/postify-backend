@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,5 +51,16 @@ public class CommentController {
     public ResponseEntity<Comment> addComment(@RequestBody CommentDTO commentDTO) {
         Comment comment = commentService.addComment(commentDTO);
         return ResponseEntity.ok(comment);
+    }
+
+    // Endpoint para dar me gusta a los comentarios
+    @PostMapping("/comment/{commentId}/like/{userId}")
+    public ResponseEntity<?> likeComment(@PathVariable Long commentId, @PathVariable Long userId) {
+        Comment updatedComment = commentService.setLikeComment(commentId, userId);
+        if (updatedComment == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(Collections.singletonMap("message", "User has already liked this comment"));
+        }
+        return ResponseEntity.ok(updatedComment);
     }
 }

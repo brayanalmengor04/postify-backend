@@ -39,6 +39,30 @@ public class CommentService implements ICommentService {
     }
 
     @Override
+    public Comment setLikeComment(Long commentId, Long userId) {
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new RuntimeException("Comment not found with ID: " + commentId));
+
+        User user = userService.getUserById(userId);
+        if (user == null) {
+            throw new RuntimeException("User not found with ID: " + userId);
+        }
+
+        // Verificar si el usuario ya dio like
+        if (comment.getLikedByUsers().contains(user)) {
+            return null; // Retornamos null para indicar que ya dio like
+        }
+
+        // Agregar el usuario a la lista de likes y aumentar el contador
+        comment.getLikedByUsers().add(user);
+        comment.setLikes(comment.getLikes() + 1);
+
+        return commentRepository.save(comment);
+    }
+
+
+
+    @Override
     public Comment getCommentById(Long commentId) {
         return this.commentRepository.findById(commentId).orElse(null);
     }
